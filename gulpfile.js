@@ -23,7 +23,6 @@ gulp.task("bundle", () => {
 gulp.task("add-react", () => {
   return gulp
     .src("./dist/bundle.js")
-    .pipe(gap.prependFile("./src/react-injector.js"))
     .pipe(gulp.dest("./dist"));
 });
 

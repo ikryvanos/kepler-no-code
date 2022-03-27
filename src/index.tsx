@@ -11,6 +11,7 @@ reportWebVitals(console.log);
 // @ts-ignore
 window.initKepler = initKepler;
 document.addEventListener("DOMContentLoaded", function() {
+  console.info('Init all kepler tags')
   const tags = document.querySelectorAll('[data-widget-type=\'kepler.gl\']');
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -20,13 +21,17 @@ document.addEventListener("DOMContentLoaded", function() {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 window.processModeAnalyticsDatasets = (datasets: Array<any>) => {
-  return datasets.map(({content, queryName, query_token}) => ({
-    info: {
-      label: queryName,
-      id: query_token,
-    },
-    data: getFieldsFromData(content),
-  }));
+  console.info('Remapbing', datasets);
+  return datasets.map(({content, queryName, query_token}) => {
+    console.info('Remapbing dataset ', content, queryName, query_token);
+    return  {
+      info: {
+        label: queryName,
+        id: query_token,
+      },
+      data: getFieldsFromData(content),
+    }
+  });
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

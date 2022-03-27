@@ -15,6 +15,7 @@ const parseJSON = <T>(str: string): [Error | null, T | null] => {
 }
 
 export default function initKepler(element: HTMLElement, dataSets: Array<DataSet>) {
+  console.info(`Initing kepler for ${element.tagName}${element.id}`)
   const mapboxApiAccessToken = element.dataset.mapboxToken;
   if (!mapboxApiAccessToken) {
     throw new Error(`Element ${element.id} has not "data-mapbox-token" attribute`);
