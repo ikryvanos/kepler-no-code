@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# Kepler no code
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to use
+1. Add output artifacts from `./release/<version>` to you page
+1. Create tag to put kepler content inside (most likely to use `div`)
+    1. Add following attributes:
+        1. `data-widget-type='kepler.gl'`
+        1. `data-mapbox-token="<mapbox-access-token>"`
+        1. `data-width="<desigred width>"`
+        1. `data-height="<desigred height>"`
+        1. `onLoad="initKepler(this, <you js var with datasets>)"`
+        
+### How data sets should look like
+It should be an array of data sets to display. Here the example
+```js
+[{
+    info: {
+      label: 'SOME VISIBLE NAME OF DATASET',
+      id: 'UNIQUE ID OF ID'
+    },
+    data: {
+      fields: [
+        // fields of the data set
+        {name: 'tpep_pickup_datetime', format: 'YYYY-M-D H:m:s', type: 'timestamp'},
+        {name: 'pickup_longitude', format: '', type: 'real'},
+        {name: 'pickup_latitude', format: '', type: 'real'}
+      ],
+      rows: [
+        // dataset values
+        ['2015-01-15 19:05:39 +00:00', -73.99389648, 40.75011063],
+        ['2015-01-15 19:05:39 +00:00', -73.97642517, 40.73981094],
+        ['2015-01-15 19:05:40 +00:00', -73.96870422, 40.75424576]
+      ]
+    }
+}]
+```
 
-## Available Scripts
+## How to use it in Mode Analytics
+Call preprocessor to parse data and provide it into to kepler tag
+```js
+const keplerDataset = processModeAnalyticsDatasets(datasets);
+``` 
 
-In the project directory, you can run:
+## How to use it with other formats
+You could use other kepler preprocessors from [here](https://docs.kepler.gl/docs/api-reference/processors/processors)
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Examples
+Display data from mode analytics
+```html
+<script src="https://raw.githubusercontent.com/ikryvanos/kepler-no-code/main/releases/v1/js/chunk.js"></script>
+<script src="https://raw.githubusercontent.com/ikryvanos/kepler-no-code/main/releases/v1/js/main.js"></script>
+<script>
+  var keplerDataset = processModeAnalyticsDatasets(datasets);
+</script>
+<div
+    data-widget-type='kepler.gl'
+    data-mapbox-token="pk.eyJ1IjoiaWhhcmtyeXZhbm9zIiwiYSI6ImNrMWtmYjRqeDE2YnIzZGp5bmkzdmNicXUifQ.Y3f3Cmz3xebuejGbi9SIeA"
+    data-width="1600"
+    data-height="800"
+    onLoad="initKepler(this, keplerDataset)"
+/>
+```
