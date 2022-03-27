@@ -12,8 +12,37 @@
     <title>React App</title>
   </head>
   <body>
+    <script>
+      var dataSets = [{
+        info: {
+          label: 'Some label',
+          id: 'some-id'
+        },
+        data: {
+          fields: [
+            {name: 'tpep_pickup_datetime', format: 'YYYY-M-D H:m:s', type: 'timestamp'},
+            {name: 'pickup_longitude', format: '', type: 'real'},
+            {name: 'pickup_latitude', format: '', type: 'real'}
+          ],
+          rows: [
+            ['2015-01-15 19:05:39 +00:00', Math.random() * -73.99389648, 40.75011063],
+            ['2015-01-15 19:05:39 +00:00', Math.random() * -73.97642517, 40.73981094],
+            ['2015-01-15 19:05:40 +00:00', Math.random() * -73.96870422, 40.75424576]
+          ]
+        }
+      }]
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div
+            data-widget-type='kepler.gl'
+            data-mapbox-token="pk.eyJ1IjoiaWhhcmtyeXZhbm9zIiwiYSI6ImNrMWtmYjRqeDE2YnIzZGp5bmkzdmNicXUifQ.Y3f3Cmz3xebuejGbi9SIeA"
+            data-width="1600"
+            data-height="800"
+            data-vis-state="{&quot;filters&quot;:[],&quot;layers&quot;:[{&quot;id&quot;:&quot;e2xyonc&quot;,&quot;type&quot;:&quot;point&quot;,&quot;config&quot;:{&quot;dataId&quot;:&quot;some-id&quot;,&quot;label&quot;:&quot;pickup&quot;,&quot;color&quot;:[255,203,153],&quot;highlightColor&quot;:[252,242,26,255],&quot;columns&quot;:{&quot;lat&quot;:&quot;pickup_latitude&quot;,&quot;lng&quot;:&quot;pickup_longitude&quot;,&quot;altitude&quot;:null},&quot;isVisible&quot;:true,&quot;visConfig&quot;:{&quot;radius&quot;:10,&quot;fixedRadius&quot;:false,&quot;opacity&quot;:0.8,&quot;outline&quot;:false,&quot;thickness&quot;:2,&quot;strokeColor&quot;:null,&quot;colorRange&quot;:{&quot;name&quot;:&quot;Global Warming&quot;,&quot;type&quot;:&quot;sequential&quot;,&quot;category&quot;:&quot;Uber&quot;,&quot;colors&quot;:[&quot;#5A1846&quot;,&quot;#900C3F&quot;,&quot;#C70039&quot;,&quot;#E3611C&quot;,&quot;#F1920E&quot;,&quot;#FFC300&quot;]},&quot;strokeColorRange&quot;:{&quot;name&quot;:&quot;Global Warming&quot;,&quot;type&quot;:&quot;sequential&quot;,&quot;category&quot;:&quot;Uber&quot;,&quot;colors&quot;:[&quot;#5A1846&quot;,&quot;#900C3F&quot;,&quot;#C70039&quot;,&quot;#E3611C&quot;,&quot;#F1920E&quot;,&quot;#FFC300&quot;]},&quot;radiusRange&quot;:[0,50],&quot;filled&quot;:true},&quot;hidden&quot;:false,&quot;textLabel&quot;:[{&quot;field&quot;:null,&quot;color&quot;:[255,255,255],&quot;size&quot;:18,&quot;offset&quot;:[0,0],&quot;anchor&quot;:&quot;start&quot;,&quot;alignment&quot;:&quot;center&quot;}]},&quot;visualChannels&quot;:{&quot;colorField&quot;:null,&quot;colorScale&quot;:&quot;quantile&quot;,&quot;strokeColorField&quot;:null,&quot;strokeColorScale&quot;:&quot;quantile&quot;,&quot;sizeField&quot;:null,&quot;sizeScale&quot;:&quot;linear&quot;}},{&quot;id&quot;:&quot;55nf4la&quot;,&quot;type&quot;:&quot;grid&quot;,&quot;config&quot;:{&quot;dataId&quot;:&quot;some-id&quot;,&quot;label&quot;:&quot;new layer&quot;,&quot;color&quot;:[231,159,213],&quot;highlightColor&quot;:[252,242,26,255],&quot;columns&quot;:{&quot;lat&quot;:&quot;pickup_longitude&quot;,&quot;lng&quot;:&quot;pickup_latitude&quot;},&quot;isVisible&quot;:true,&quot;visConfig&quot;:{&quot;opacity&quot;:0.8,&quot;worldUnitSize&quot;:162.3377,&quot;colorRange&quot;:{&quot;name&quot;:&quot;ColorBrewer PuBu-6&quot;,&quot;type&quot;:&quot;sequential&quot;,&quot;category&quot;:&quot;ColorBrewer&quot;,&quot;colors&quot;:[&quot;#f1eef6&quot;,&quot;#d0d1e6&quot;,&quot;#a6bddb&quot;,&quot;#74a9cf&quot;,&quot;#2b8cbe&quot;,&quot;#045a8d&quot;]},&quot;coverage&quot;:1,&quot;sizeRange&quot;:[0,500],&quot;percentile&quot;:[0,100],&quot;elevationPercentile&quot;:[0,100],&quot;elevationScale&quot;:5,&quot;enableElevationZoomFactor&quot;:true,&quot;colorAggregation&quot;:&quot;count&quot;,&quot;sizeAggregation&quot;:&quot;count&quot;,&quot;enable3d&quot;:false},&quot;hidden&quot;:false,&quot;textLabel&quot;:[{&quot;field&quot;:null,&quot;color&quot;:[255,255,255],&quot;size&quot;:18,&quot;offset&quot;:[0,0],&quot;anchor&quot;:&quot;start&quot;,&quot;alignment&quot;:&quot;center&quot;}]},&quot;visualChannels&quot;:{&quot;colorField&quot;:null,&quot;colorScale&quot;:&quot;quantile&quot;,&quot;sizeField&quot;:null,&quot;sizeScale&quot;:&quot;linear&quot;}}],&quot;interactionConfig&quot;:{&quot;tooltip&quot;:{&quot;fieldsToShow&quot;:{&quot;some-id&quot;:[{&quot;name&quot;:&quot;tpep_pickup_datetime&quot;,&quot;format&quot;:null}]},&quot;compareMode&quot;:false,&quot;compareType&quot;:&quot;absolute&quot;,&quot;enabled&quot;:true},&quot;brush&quot;:{&quot;size&quot;:0.5,&quot;enabled&quot;:false},&quot;geocoder&quot;:{&quot;enabled&quot;:false},&quot;coordinate&quot;:{&quot;enabled&quot;:false}},&quot;layerBlending&quot;:&quot;normal&quot;,&quot;splitMaps&quot;:[],&quot;animationConfig&quot;:{&quot;currentTime&quot;:null,&quot;speed&quot;:1}}"
+            data-map-state="{&quot;bearing&quot;:0,&quot;dragRotate&quot;:false,&quot;latitude&quot;:40.74702835,&quot;longitude&quot;:-23.760692656352433,&quot;pitch&quot;:0,&quot;zoom&quot;:4,&quot;isSplit&quot;:false}"
+            data-map-style="{&quot;styleType&quot;:&quot;dark&quot;,&quot;topLayerGroups&quot;:{},&quot;visibleLayerGroups&quot;:{&quot;label&quot;:true,&quot;road&quot;:true,&quot;border&quot;:false,&quot;building&quot;:true,&quot;water&quot;:true,&quot;land&quot;:true,&quot;3d building&quot;:false},&quot;threeDBuildingColor&quot;:[9.665468314072013,17.18305478057247,31.1442867897876],&quot;mapStyles&quot;:{}}"
+            onLoad="initKepler(this, dataSets)"
+    />
 
     <div id="root2"></div>
   </body>
