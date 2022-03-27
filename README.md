@@ -47,8 +47,8 @@ You could use other kepler preprocessors from [here](https://docs.kepler.gl/docs
 ## Examples
 Display data from mode analytics
 ```html
-<script src="https://raw.githubusercontent.com/ikryvanos/kepler-no-code/main/releases/v1/js/chunk.js"></script>
-<script src="https://raw.githubusercontent.com/ikryvanos/kepler-no-code/main/releases/v1/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ikryvanos/kepler-no-code/releases/v1/js/chunk.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ikryvanos/kepler-no-code/releases/v1/js/main.js"></script>
 <script>
   var keplerDataset = processModeAnalyticsDatasets(datasets);
 </script>
