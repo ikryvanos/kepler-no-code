@@ -1,6 +1,9 @@
 import mountKeplerGl from "./mount-kepler-gl";
 import {DataSet} from "../kepler-gl/types/data";
-import {MapState, MapStyle, UiState, VisState} from "../kepler-gl/types/state";
+import {MapState, MapStyle, VisState} from "../kepler-gl/types/state";
+import {Logger} from "../infrastructure/logger";
+
+const logger = new Logger('kepler-no-code#index.ts');
 
 const parseJSON = <T>(str: string): [Error | null, T | null] => {
   let obj: Record<string, any> | null = null;
@@ -15,7 +18,7 @@ const parseJSON = <T>(str: string): [Error | null, T | null] => {
 }
 
 export default function initKepler(element: HTMLElement, dataSets: Array<DataSet>) {
-  console.info(`Initing kepler for ${element.tagName}${element.id}`)
+  logger.debug(`Initializing kepler for ${element.tagName}#${element.id}`)
   const mapboxApiAccessToken = element.dataset.mapboxToken;
   if (!mapboxApiAccessToken) {
     throw new Error(`Element ${element.id} has not "data-mapbox-token" attribute`);
@@ -66,6 +69,7 @@ export default function initKepler(element: HTMLElement, dataSets: Array<DataSet
   const onloadStr = element.onload!.toString();
   const originalOnLoad = onloadStr.substring(onloadStr.indexOf("{") + 1, onloadStr.lastIndexOf("}")).replace(/\n/g, '');
 
+  logger.debug(`Mounting kepler component to ${element.tagName}#${element.id}...`);
   mountKeplerGl(element, {
     mapboxApiAccessToken,
     width: width,
@@ -82,4 +86,5 @@ export default function initKepler(element: HTMLElement, dataSets: Array<DataSet
       onload: originalOnLoad,
     }
   });
+  logger.debug(`Kepler component mounted to ${element.tagName}#${element.id}.`);
 }
