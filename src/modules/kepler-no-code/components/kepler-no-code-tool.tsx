@@ -4,11 +4,12 @@ import {modalOpen, originalHtmlTagSetMeta} from "../store/actions";
 import {ModalIds} from "../store/types/state";
 import {DataSet} from "../../kepler-gl/types/data";
 import {MapState, MapStyle, UiState, VisState} from "../../kepler-gl/types/state";
-import {keplerGlComponentId} from "../constant";
+import {keplerGlComponentId} from '../constant';
 import React from "react";
+import { useStore } from "react-redux";
 import {addDataToMap} from "kepler.gl/actions";
-import {store} from "../store";
 import {ModalDialog} from "./modal-dialogs";
+import {ReduxState} from "../store";
 
 export const KeplerNoCodeTool = (props: {
   mapboxApiAccessToken: string;
@@ -33,6 +34,7 @@ export const KeplerNoCodeTool = (props: {
     mapStyle?: MapStyle;
   },
 }) => {
+  const store = useStore<ReduxState>();
   const KeplerGl = createKeplerGl({
     sidePanel: {
       header: {
@@ -49,7 +51,7 @@ export const KeplerNoCodeTool = (props: {
                 label: 'toolbar.saveMap',
                 icon: Icons.Save2,
                 key: 'save',
-                onClick: () => () => modalOpen(ModalIds.HTML_TAG_SAVE),
+                onClick: () => () => modalOpen(store, ModalIds.HTML_TAG_SAVE),
               },
             ],
           }
@@ -74,7 +76,7 @@ export const KeplerNoCodeTool = (props: {
       },
     }));
 
-    originalHtmlTagSetMeta(props.originalHtmlTagMeta);
+    originalHtmlTagSetMeta(store, props.originalHtmlTagMeta);
   });
 
   return (<div>

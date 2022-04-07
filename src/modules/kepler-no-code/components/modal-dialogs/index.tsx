@@ -4,6 +4,8 @@ import {modalClose} from "../../store/actions";
 import {useModalDialogState} from "../../effects/useModalDialogState";
 import {ModalIds} from "../../store/types/state";
 import {HtmlTagExportDialogContent} from "./html-tag-export-dialog-content";
+import {useStore} from "react-redux";
+import {ReduxState} from "../../store";
 
 export const ModalDialog = () => {
   const modalState = useModalDialogState();
@@ -12,7 +14,9 @@ export const ModalDialog = () => {
     activeDialog = <HtmlTagExportDialogContent/>;
   }
 
-  return <Modal isOpen={modalState.isOpened} onCancel={() => modalClose()}>
+  const store = useStore<ReduxState>()
+
+  return <Modal isOpen={modalState.isOpened} onCancel={() => modalClose(store)}>
     <StyledModalContent>
       {activeDialog}
     </StyledModalContent>

@@ -3,7 +3,6 @@ import {useKeplerAppState} from "../../effects/useKeplerAppState";
 import KeplerGlSchema from "kepler.gl/schemas";
 import {StyledModalContent} from "kepler.gl/components";
 import React from "react";
-import {useModalDialogState} from "../../effects/useModalDialogState";
 import {useOriginalHtmlTagState} from "../../effects/useOriginalHtmlTagState";
 
 function encodHtml(str: string){

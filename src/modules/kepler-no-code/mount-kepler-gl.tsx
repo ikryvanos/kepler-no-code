@@ -1,14 +1,9 @@
 import React from 'react';
 
-import {Provider, useSelector} from "react-redux";
-import {addDataToMap } from "kepler.gl/actions";
-import KeplerGlSchema from 'kepler.gl/schemas';
-import {Icons} from "kepler.gl";
-import {createStore, createKeplerGl} from '../kepler-gl';
-import {Modal, StyledModalContent} from 'kepler.gl/components';
+import {Provider} from "react-redux";
 import {MapState, MapStyle, UiState, VisState} from "../kepler-gl/types/state";
 import {DataSet} from "../kepler-gl/types/data";
-import {store} from "./store";
+import {createStore} from "./store";
 import {KeplerNoCodeTool} from "./components/kepler-no-code-tool";
 import ReactDOM from "react-dom";
 
@@ -34,6 +29,8 @@ const mountKeplerGl = (element: HTMLElement, params: {
   height: number;
   dataSets: Array<DataSet>;
 }) => {
+  const store = createStore();
+
   const app = (
     <Provider store={store}>
       <KeplerNoCodeTool
